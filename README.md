@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=21405556&assignment_repo_type=AssignmentRepo)
 # Proyecto integrador
 ### ACA NOOOOOOOOOOOOO SE HACEN CAMBIOS 
@@ -23,3 +24,7 @@
 10. [G10 - Galga](/G10)
 
 11. [G11 - Nombre etapa](/G11)
+=======
+# Sistema-de-mezclado-de-pinturas
+Sistema de mezclado de pinturas de forma automática seleccionando el color por medio de una foto 
+>>>>>>> 303f8679b2ef2bbba198edf5fdae925036aa35d2
