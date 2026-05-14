@@ -1,0 +1,56 @@
+[
+    {
+        "id": "09e6fac52a131186",
+        "type": "ui_gauge",
+        "z": "1142a758c3b277ef",
+        "name": "",
+        "group": "6511f5347db4bf39",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "gauge",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "3000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 470,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "6511f5347db4bf39",
+        "type": "ui_group",
+        "name": "Group 1",
+        "tab": "549c02f252798d40",
+        "order": 1,
+        "disp": true,
+        "width": 6
+    },
+    {
+        "id": "549c02f252798d40",
+        "type": "ui_tab",
+        "name": "GALGA",
+        "icon": "dashboard",
+        "order": 8,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "3a7a7d3be6c17762",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]

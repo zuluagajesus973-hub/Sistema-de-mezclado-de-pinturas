@@ -1,0 +1,22 @@
+// === Función Sensor -> 3 salidas ===
+
+// Convierte el valor recibido a número
+let temp = parseFloat(msg.payload);
+if (isNaN(temp)) { return null; }  // Si no es número, no hace nada
+
+// Umbral para activar la válvula
+const UMBRAL = 30.0;
+let estado = (temp >= UMBRAL) ? "ON" : "OFF";
+
+// === Topics MQTT actualizados ===
+let sensorTopic = "micro/temperatura/sensor1";   // Publica la temperatura medida
+let valveTopic  = "micro/pintura/valvula1";      // Orden ON/OFF para la válvula
+
+// === Mensajes de salida ===
+let msgValve = { topic: valveTopic, payload: estado };         // Activa/desactiva la válvula
+let msgSensor = { topic: sensorTopic, payload: temp.toFixed(2) }; // Envía solo el valor de temperatura
+let msgLed = { payload: estado };                               // Para el LED o indicador
+
+// === Retorna 3 salidas ===
+// [1] Válvula   [2] Sensor (temperatura)   [3] LED o dashboard
+return [msgValve, msgSensor, msgLed];

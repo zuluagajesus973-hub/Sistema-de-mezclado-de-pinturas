@@ -1,0 +1,457 @@
+[
+    {
+        "id": "91b791dc02d43cf1",
+        "type": "tab",
+        "label": "Int_Final_1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "switch_modo",
+        "type": "ui_switch",
+        "z": "91b791dc02d43cf1",
+        "name": "Cambiar Modo",
+        "label": "Modo Operación",
+        "tooltip": "",
+        "group": "22f8b59b737ebb72",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "decouple": "false",
+        "topic": "sistema/modo",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 260,
+        "y": 60,
+        "wires": [
+            [
+                "mqtt_out_modo"
+            ]
+        ]
+    },
+    {
+        "id": "mqtt_out_modo",
+        "type": "mqtt out",
+        "z": "91b791dc02d43cf1",
+        "name": "Publicar Modo",
+        "topic": "sistema/modo",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "0a6b74e990efcca5",
+        "x": 550,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "mqtt_in_temp1",
+        "type": "mqtt in",
+        "z": "91b791dc02d43cf1",
+        "name": "Temp Bomba 1",
+        "topic": "bombas/temp1",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "0a6b74e990efcca5",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "led_temp1"
+            ]
+        ]
+    },
+    {
+        "id": "mqtt_in_temp2",
+        "type": "mqtt in",
+        "z": "91b791dc02d43cf1",
+        "name": "Temp Bomba 2",
+        "topic": "bombas/temp2",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "0a6b74e990efcca5",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 150,
+        "y": 180,
+        "wires": [
+            [
+                "led_temp2"
+            ]
+        ]
+    },
+    {
+        "id": "mqtt_in_temp3",
+        "type": "mqtt in",
+        "z": "91b791dc02d43cf1",
+        "name": "Temp Bomba 3",
+        "topic": "bombas/temp3",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "0a6b74e990efcca5",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 150,
+        "y": 220,
+        "wires": [
+            [
+                "led_temp3"
+            ]
+        ]
+    },
+    {
+        "id": "mqtt_in_temp4",
+        "type": "mqtt in",
+        "z": "91b791dc02d43cf1",
+        "name": "Temp Bomba 4",
+        "topic": "bombas/temp4",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "0a6b74e990efcca5",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 150,
+        "y": 260,
+        "wires": [
+            [
+                "led_temp4"
+            ]
+        ]
+    },
+    {
+        "id": "mqtt_in_temp5",
+        "type": "mqtt in",
+        "z": "91b791dc02d43cf1",
+        "name": "Temp Bomba 5",
+        "topic": "bombas/temp5",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "0a6b74e990efcca5",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 150,
+        "y": 300,
+        "wires": [
+            [
+                "led_temp5"
+            ]
+        ]
+    },
+    {
+        "id": "led_temp1",
+        "type": "ui_led",
+        "z": "91b791dc02d43cf1",
+        "order": 2,
+        "group": "22f8b59b737ebb72",
+        "width": "0",
+        "height": "0",
+        "label": "Temp 1",
+        "colorForValue": [
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            },
+            {
+                "color": "#ff0000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 430,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "led_temp2",
+        "type": "ui_led",
+        "z": "91b791dc02d43cf1",
+        "order": 3,
+        "group": "22f8b59b737ebb72",
+        "width": "0",
+        "height": "0",
+        "label": "Temp 2",
+        "colorForValue": [
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            },
+            {
+                "color": "#ff0000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 430,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "led_temp3",
+        "type": "ui_led",
+        "z": "91b791dc02d43cf1",
+        "order": 4,
+        "group": "22f8b59b737ebb72",
+        "width": "0",
+        "height": "0",
+        "label": "Temp 3",
+        "colorForValue": [
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            },
+            {
+                "color": "#ff0000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 430,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "led_temp4",
+        "type": "ui_led",
+        "z": "91b791dc02d43cf1",
+        "order": 5,
+        "group": "22f8b59b737ebb72",
+        "width": "0",
+        "height": "0",
+        "label": "Temp 4",
+        "colorForValue": [
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            },
+            {
+                "color": "#ff0000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 430,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "led_temp5",
+        "type": "ui_led",
+        "z": "91b791dc02d43cf1",
+        "order": 6,
+        "group": "22f8b59b737ebb72",
+        "width": "0",
+        "height": "0",
+        "label": "Temp 5",
+        "colorForValue": [
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            },
+            {
+                "color": "#ff0000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 430,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "mqtt_out_b1",
+        "type": "mqtt out",
+        "z": "91b791dc02d43cf1",
+        "name": "Estado B1",
+        "topic": "bombas/estado1",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "0a6b74e990efcca5",
+        "x": 610,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "mqtt_out_b2",
+        "type": "mqtt out",
+        "z": "91b791dc02d43cf1",
+        "name": "Estado B2",
+        "topic": "bombas/estado2",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "0a6b74e990efcca5",
+        "x": 610,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "mqtt_out_b3",
+        "type": "mqtt out",
+        "z": "91b791dc02d43cf1",
+        "name": "Estado B3",
+        "topic": "bombas/estado3",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "0a6b74e990efcca5",
+        "x": 610,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "mqtt_out_b4",
+        "type": "mqtt out",
+        "z": "91b791dc02d43cf1",
+        "name": "Estado B4",
+        "topic": "bombas/estado4",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "0a6b74e990efcca5",
+        "x": 610,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "mqtt_out_b5",
+        "type": "mqtt out",
+        "z": "91b791dc02d43cf1",
+        "name": "Estado B5",
+        "topic": "bombas/estado5",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "0a6b74e990efcca5",
+        "x": 610,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "22f8b59b737ebb72",
+        "type": "ui_group",
+        "name": "IntFin1",
+        "tab": "9a242af01a1f919f",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "0a6b74e990efcca5",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.10",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "9a242af01a1f919f",
+        "type": "ui_tab",
+        "name": "Intento_Fin1",
+        "icon": "dashboard",
+        "order": 6,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "c06bd23ee6ae0bcb",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6",
+            "node-red-contrib-ui-led": "0.4.11"
+        }
+    }
+]

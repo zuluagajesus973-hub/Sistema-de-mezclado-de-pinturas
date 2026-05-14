@@ -1,0 +1,326 @@
+[
+    {
+        "id": "7ddf11769c35a7cd",
+        "type": "tab",
+        "label": "Control LEDs ESP32",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "78eac850be387232",
+        "type": "inject",
+        "z": "7ddf11769c35a7cd",
+        "name": "RESISTENCIA1 OFF",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "esp32/leds/control",
+        "payload": "{\"led\":\"led1\",\"action\":\"on\"}",
+        "payloadType": "json",
+        "x": 160,
+        "y": 160,
+        "wires": [
+            [
+                "24d8fa2a1aca03cd"
+            ]
+        ]
+    },
+    {
+        "id": "fd891ad227185f0f",
+        "type": "inject",
+        "z": "7ddf11769c35a7cd",
+        "name": "RESISTENCIA1 ON",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "esp32/leds/control",
+        "payload": "{\"led\":\"led1\",\"action\":\"off\"}",
+        "payloadType": "json",
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "24d8fa2a1aca03cd"
+            ]
+        ]
+    },
+    {
+        "id": "82729d4cc3a8ccc4",
+        "type": "inject",
+        "z": "7ddf11769c35a7cd",
+        "name": "RESISTENCIA2 OFF",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "esp32/leds/control",
+        "payload": "{\"led\":\"led2\",\"action\":\"on\"}",
+        "payloadType": "json",
+        "x": 160,
+        "y": 280,
+        "wires": [
+            [
+                "24d8fa2a1aca03cd"
+            ]
+        ]
+    },
+    {
+        "id": "5d16ad0d11bcc12e",
+        "type": "inject",
+        "z": "7ddf11769c35a7cd",
+        "name": "RESISTENCIA2 ON",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "esp32/leds/control",
+        "payload": "{\"led\":\"led2\",\"action\":\"off\"}",
+        "payloadType": "json",
+        "x": 150,
+        "y": 240,
+        "wires": [
+            [
+                "24d8fa2a1aca03cd"
+            ]
+        ]
+    },
+    {
+        "id": "24d8fa2a1aca03cd",
+        "type": "mqtt out",
+        "z": "7ddf11769c35a7cd",
+        "name": "Enviar Comando",
+        "topic": "esp32/leds/control",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "c0396a184ed019f7",
+        "x": 510,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "a79a1ed9b4be9b11",
+        "type": "mqtt in",
+        "z": "7ddf11769c35a7cd",
+        "name": "ESTADO RESISTENCIAS",
+        "topic": "esp32/leds/status",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "c0396a184ed019f7",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 410,
+        "y": 40,
+        "wires": [
+            [
+                "b4fdb147eb9c0753"
+            ]
+        ]
+    },
+    {
+        "id": "b4fdb147eb9c0753",
+        "type": "debug",
+        "z": "7ddf11769c35a7cd",
+        "name": "Ver Estado",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 650,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "ec9391f4b604ccb2",
+        "type": "inject",
+        "z": "7ddf11769c35a7cd",
+        "name": "RESISTENCIA3 OFF",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "esp32/leds/control",
+        "payload": "{\"led\":\"led3\",\"action\":\"on\"}",
+        "payloadType": "json",
+        "x": 160,
+        "y": 400,
+        "wires": [
+            [
+                "24d8fa2a1aca03cd"
+            ]
+        ]
+    },
+    {
+        "id": "96d857f620c05949",
+        "type": "inject",
+        "z": "7ddf11769c35a7cd",
+        "name": "RESISTENCIA3 ON",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "esp32/leds/control",
+        "payload": "{\"led\":\"led3\",\"action\":\"off\"}",
+        "payloadType": "json",
+        "x": 150,
+        "y": 360,
+        "wires": [
+            [
+                "24d8fa2a1aca03cd"
+            ]
+        ]
+    },
+    {
+        "id": "6cde15218814e006",
+        "type": "inject",
+        "z": "7ddf11769c35a7cd",
+        "name": "RESISTENCIA4 OFF",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "esp32/leds/control",
+        "payload": "{\"led\":\"led4\",\"action\":\"on\"}",
+        "payloadType": "json",
+        "x": 160,
+        "y": 520,
+        "wires": [
+            [
+                "24d8fa2a1aca03cd"
+            ]
+        ]
+    },
+    {
+        "id": "8b11e6b44f57223b",
+        "type": "inject",
+        "z": "7ddf11769c35a7cd",
+        "name": "RESISTENCIA4 ON",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "esp32/leds/control",
+        "payload": "{\"led\":\"led4\",\"action\":\"off\"}",
+        "payloadType": "json",
+        "x": 150,
+        "y": 480,
+        "wires": [
+            [
+                "24d8fa2a1aca03cd"
+            ]
+        ]
+    },
+    {
+        "id": "c0396a184ed019f7",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "10.171.40.138",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
+

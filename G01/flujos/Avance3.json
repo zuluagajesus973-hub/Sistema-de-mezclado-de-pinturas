@@ -1,0 +1,343 @@
+[
+    {
+        "id": "7f094bfbf12feb38",
+        "type": "tab",
+        "label": "Bomba ML",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "0859e03a3618d7f5",
+        "type": "mqtt in",
+        "z": "7f094bfbf12feb38",
+        "name": "Activación",
+        "topic": "sensor/activacion",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "be7b9641e9bcd30b",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 60,
+        "wires": [
+            [
+                "29045b6e7fd69765",
+                "0ef02b0ee957df3a"
+            ]
+        ]
+    },
+    {
+        "id": "3ad6fba2fdd89a7b",
+        "type": "mqtt in",
+        "z": "7f094bfbf12feb38",
+        "name": "Galga",
+        "topic": "sensor/galga",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "be7b9641e9bcd30b",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "7ae62d151e1d3283",
+                "0ef02b0ee957df3a"
+            ]
+        ]
+    },
+    {
+        "id": "9f99d1f91ca5179d",
+        "type": "mqtt in",
+        "z": "7f094bfbf12feb38",
+        "name": "Temperatura",
+        "topic": "sensor/temperatura",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "be7b9641e9bcd30b",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 170,
+        "y": 260,
+        "wires": [
+            [
+                "7be5579d9c392022",
+                "0ef02b0ee957df3a"
+            ]
+        ]
+    },
+    {
+        "id": "0ef02b0ee957df3a",
+        "type": "join",
+        "z": "7f094bfbf12feb38",
+        "name": "Unir entradas",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "useparts": true,
+        "accumulate": false,
+        "timeout": "2",
+        "count": "3",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 400,
+        "y": 180,
+        "wires": [
+            [
+                "0daa9f55b975ebb0"
+            ]
+        ]
+    },
+    {
+        "id": "0daa9f55b975ebb0",
+        "type": "function",
+        "z": "7f094bfbf12feb38",
+        "name": "Lógica activación",
+        "func": "// Variables recibidas de los tres sensores\nvar act = parseInt(msg.payload['sensor/activacion']) || 0;\nvar galga = parseInt(msg.payload['sensor/galga']) || 0;\nvar temp = parseInt(msg.payload['sensor/temperatura']) || 0;\n\n// Condición: solo se enciende si los tres son 1\nif (act === 1 && galga === 1 && temp === 1) {\n    msg.payload = 1;\n} else {\n    msg.payload = 0;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 120,
+        "wires": [
+            [
+                "cc0bfa03e4ea547a"
+            ]
+        ]
+    },
+    {
+        "id": "a0551b3697a65f7c",
+        "type": "ui_switch",
+        "z": "7f094bfbf12feb38",
+        "name": "Encendido Manual",
+        "label": "Bomba Manual",
+        "tooltip": "",
+        "group": "dae114c04a396a81",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "manual",
+        "topicType": "str",
+        "onvalue": "1",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 590,
+        "y": 240,
+        "wires": [
+            [
+                "cc0bfa03e4ea547a"
+            ]
+        ]
+    },
+    {
+        "id": "cc0bfa03e4ea547a",
+        "type": "rbe",
+        "z": "7f094bfbf12feb38",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": true,
+        "property": "payload",
+        "topi": "topic",
+        "x": 790,
+        "y": 180,
+        "wires": [
+            [
+                "e3c5a5671ba72221",
+                "217965dd743a4e7f"
+            ]
+        ]
+    },
+    {
+        "id": "e3c5a5671ba72221",
+        "type": "mqtt out",
+        "z": "7f094bfbf12feb38",
+        "name": "Publicar estado bomba",
+        "topic": "bomba/control",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "be7b9641e9bcd30b",
+        "x": 1020,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "217965dd743a4e7f",
+        "type": "ui_gauge",
+        "z": "7f094bfbf12feb38",
+        "name": "Indicador Bomba",
+        "group": "dae114c04a396a81",
+        "order": 5,
+        "width": 6,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Estado de la Bomba",
+        "label": "BOMBA",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 1,
+        "colors": [
+            "#ff0000",
+            "#ffff00",
+            "#00ff00"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1010,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "29045b6e7fd69765",
+        "type": "ui_text",
+        "z": "7f094bfbf12feb38",
+        "group": "dae114c04a396a81",
+        "order": 1,
+        "width": 4,
+        "height": 1,
+        "name": "Indicador Activación",
+        "label": "Señal Activación:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 140,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "7ae62d151e1d3283",
+        "type": "ui_text",
+        "z": "7f094bfbf12feb38",
+        "group": "dae114c04a396a81",
+        "order": 2,
+        "width": 4,
+        "height": 1,
+        "name": "Indicador Galga",
+        "label": "Señal Galga:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 120,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "7be5579d9c392022",
+        "type": "ui_text",
+        "z": "7f094bfbf12feb38",
+        "group": "dae114c04a396a81",
+        "order": 3,
+        "width": 4,
+        "height": 1,
+        "name": "Indicador Temperatura",
+        "label": "Señal Temperatura:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 140,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "be7b9641e9bcd30b",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.9",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "dae114c04a396a81",
+        "type": "ui_group",
+        "name": "DSB Bombas",
+        "tab": "6605b0b68657e7c0",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6605b0b68657e7c0",
+        "type": "ui_tab",
+        "name": "BOMBAS",
+        "icon": "dashboard",
+        "order": 5,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "6f79271d968d4a7b",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]

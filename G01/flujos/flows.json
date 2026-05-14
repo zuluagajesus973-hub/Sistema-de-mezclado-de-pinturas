@@ -1,0 +1,189 @@
+[
+    {
+        "id": "a5b0560d3d7dd93d",
+        "type": "tab",
+        "label": "Avance 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "bomba_control_in",
+        "type": "mqtt in",
+        "z": "a5b0560d3d7dd93d",
+        "name": "Estado Bomba (desde ESP32)",
+        "topic": "bomba/estado",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "be7b9641e9bcd30b",
+        "nl": false,
+        "rap": true,
+        "inputs": 0,
+        "x": 210,
+        "y": 80,
+        "wires": [
+            [
+                "texto_estado_bomba"
+            ]
+        ]
+    },
+    {
+        "id": "texto_estado_bomba",
+        "type": "ui_text",
+        "z": "a5b0560d3d7dd93d",
+        "group": "grupo_dashboard",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Estado de la bomba",
+        "label": "Estado Bomba:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 500,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "manual_on",
+        "type": "ui_button",
+        "z": "a5b0560d3d7dd93d",
+        "name": "Encender bomba manual",
+        "group": "grupo_dashboard",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Encender bomba",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "payload": "ON",
+        "topic": "bomba/control",
+        "x": 220,
+        "y": 160,
+        "wires": [
+            [
+                "mqtt_out_bomba"
+            ]
+        ]
+    },
+    {
+        "id": "manual_off",
+        "type": "ui_button",
+        "z": "a5b0560d3d7dd93d",
+        "name": "Apagar bomba manual",
+        "group": "grupo_dashboard",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Apagar bomba",
+        "payload": "OFF",
+        "topic": "bomba/control",
+        "x": 220,
+        "y": 220,
+        "wires": [
+            [
+                "mqtt_out_bomba"
+            ]
+        ]
+    },
+    {
+        "id": "auto_mode",
+        "type": "ui_button",
+        "z": "a5b0560d3d7dd93d",
+        "name": "Modo automático",
+        "group": "grupo_dashboard",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Modo automático",
+        "payload": "AUTO",
+        "topic": "bomba/control",
+        "x": 220,
+        "y": 280,
+        "wires": [
+            [
+                "mqtt_out_bomba"
+            ]
+        ]
+    },
+    {
+        "id": "mqtt_out_bomba",
+        "type": "mqtt out",
+        "z": "a5b0560d3d7dd93d",
+        "name": "Publicar control bomba",
+        "topic": "bomba/control",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "be7b9641e9bcd30b",
+        "x": 520,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "be7b9641e9bcd30b",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.9",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "grupo_dashboard",
+        "type": "ui_group",
+        "name": "Control Bomba",
+        "tab": "tab_principal",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "tab_principal",
+        "type": "ui_tab",
+        "name": "Panel Principal",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "e3e7d9ae382e160f",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]

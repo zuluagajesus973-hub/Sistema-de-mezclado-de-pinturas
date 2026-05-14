@@ -1,0 +1,532 @@
+[
+    {
+        "id": "a38a6f1d49ba3af3",
+        "type": "tab",
+        "label": "Mezclador",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "81ecc07b2dfc94df",
+        "type": "mqtt in",
+        "z": "a38a6f1d49ba3af3",
+        "name": "PWM agitador",
+        "topic": "agitador/pwm",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "893e725fe440655a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "7212f4177094e558",
+                "5b9155a3401c8258"
+            ]
+        ]
+    },
+    {
+        "id": "7212f4177094e558",
+        "type": "function",
+        "z": "a38a6f1d49ba3af3",
+        "name": "PWM agitador → número",
+        "func": "msg.payload = Number(msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 100,
+        "wires": [
+            [
+                "cc8f0b0f60457fe5",
+                "da6193fbd655702f"
+            ]
+        ]
+    },
+    {
+        "id": "cc8f0b0f60457fe5",
+        "type": "ui_gauge",
+        "z": "a38a6f1d49ba3af3",
+        "name": "Velocidad agitador",
+        "group": "435156eae1fe1a22",
+        "order": 2,
+        "width": "6",
+        "height": "5",
+        "gtype": "gage",
+        "title": "Velocidad agitador",
+        "label": "%",
+        "format": "{{msg.payload}}",
+        "min": 0,
+        "max": 100,
+        "colors": [
+            "#d3d3d3",
+            "#66ccff",
+            "#007acc"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 670,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "da6193fbd655702f",
+        "type": "ui_chart",
+        "z": "a38a6f1d49ba3af3",
+        "name": "PWM agitador — histórico",
+        "group": "435156eae1fe1a22",
+        "order": 3,
+        "width": "12",
+        "height": "4",
+        "label": "PWM agitador — histórico",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Esperando datos...",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": "60",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#007acc",
+            "#aec7e8",
+            "#ff7f0e"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 690,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "27b40b847e04b445",
+        "type": "mqtt in",
+        "z": "a38a6f1d49ba3af3",
+        "name": "Estado agitador",
+        "topic": "agitador/estado",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "893e725fe440655a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 200,
+        "wires": [
+            [
+                "ade2dddc9e0e69f4"
+            ]
+        ]
+    },
+    {
+        "id": "ade2dddc9e0e69f4",
+        "type": "ui_text",
+        "z": "a38a6f1d49ba3af3",
+        "group": "435156eae1fe1a22",
+        "order": 1,
+        "width": "12",
+        "height": "1",
+        "name": "Texto estado agitador",
+        "label": "Estado actual:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 460,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "5b9155a3401c8258",
+        "type": "function",
+        "z": "a38a6f1d49ba3af3",
+        "name": "LED agitador",
+        "func": "let pwm = Number(msg.payload);\n// true = encendido, false = apagado\nmsg.payload = pwm > 0;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 150,
+        "wires": [
+            [
+                "2d3c1c22491458af"
+            ]
+        ]
+    },
+    {
+        "id": "2d3c1c22491458af",
+        "type": "ui_led",
+        "z": "a38a6f1d49ba3af3",
+        "order": 4,
+        "group": "435156eae1fe1a22",
+        "width": 0,
+        "height": 0,
+        "label": "Motor agitador",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#00ff00",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": true,
+        "shape": "circle",
+        "name": "LED agitador",
+        "x": 680,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "4e83b208f5afaf81",
+        "type": "mqtt in",
+        "z": "a38a6f1d49ba3af3",
+        "name": "Posición elevador",
+        "topic": "elevador/posicion",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "893e725fe440655a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 320,
+        "wires": [
+            [
+                "514f640304d36c5c"
+            ]
+        ]
+    },
+    {
+        "id": "514f640304d36c5c",
+        "type": "function",
+        "z": "a38a6f1d49ba3af3",
+        "name": "Posición → número",
+        "func": "msg.payload = Number(msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 320,
+        "wires": [
+            [
+                "e5f279f7896eaf27"
+            ]
+        ]
+    },
+    {
+        "id": "e5f279f7896eaf27",
+        "type": "ui_level",
+        "z": "a38a6f1d49ba3af3",
+        "group": "1fc3c77d74f3a787",
+        "order": 2,
+        "width": "4",
+        "height": 6,
+        "name": "Posición Elevador",
+        "label": "Posición Elevador",
+        "colorHi": "#007acc",
+        "colorWarn": "#66ccff",
+        "colorNormal": "#d3d3d3",
+        "colorOff": "#000000",
+        "min": "0",
+        "max": "100",
+        "segWarn": 50,
+        "segHigh": 90,
+        "unit": "",
+        "layout": "sv",
+        "channelA": "Posición",
+        "channelB": "0–100%",
+        "decimals": 0,
+        "animations": "soft",
+        "shape": "1",
+        "colorText": "#000000",
+        "fontLabel": "",
+        "fontValue": "",
+        "fontSmall": "",
+        "colorFromTheme": true,
+        "textAnimations": false,
+        "hideValue": false,
+        "tickmode": "off",
+        "peakmode": false,
+        "property": "payload",
+        "peaktime": "",
+        "x": 690,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "24b55face73af917",
+        "type": "ui_text",
+        "z": "a38a6f1d49ba3af3",
+        "group": "1fc3c77d74f3a787",
+        "order": 4,
+        "width": "6",
+        "height": "1",
+        "name": "Texto rango elevador",
+        "label": "",
+        "format": "0% arriba — 100% abajo",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 720,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "8a6e762209291517",
+        "type": "mqtt in",
+        "z": "a38a6f1d49ba3af3",
+        "name": "Estado elevador",
+        "topic": "elevador/estado",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "893e725fe440655a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 380,
+        "wires": [
+            [
+                "260f6688d7378349",
+                "e3b785f989e4667d"
+            ]
+        ]
+    },
+    {
+        "id": "260f6688d7378349",
+        "type": "ui_text",
+        "z": "a38a6f1d49ba3af3",
+        "group": "1fc3c77d74f3a787",
+        "order": 1,
+        "width": "12",
+        "height": "1",
+        "name": "Texto estado elevador",
+        "label": "Estado elevador:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 470,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "e3b785f989e4667d",
+        "type": "function",
+        "z": "a38a6f1d49ba3af3",
+        "name": "LED elevador",
+        "func": "let estado = String(msg.payload).trim();\n// true = en movimiento, false = reposo\nmsg.payload = (estado !== \"reposo\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 430,
+        "wires": [
+            [
+                "e02f5486c34a732a"
+            ]
+        ]
+    },
+    {
+        "id": "e02f5486c34a732a",
+        "type": "ui_led",
+        "z": "a38a6f1d49ba3af3",
+        "order": 3,
+        "group": "1fc3c77d74f3a787",
+        "width": 0,
+        "height": 0,
+        "label": "Motor elevador",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#0000ff",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": true,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "LED elevador",
+        "x": 690,
+        "y": 430,
+        "wires": []
+    },
+    {
+        "id": "d51e011fde62127f",
+        "type": "ui_button",
+        "z": "a38a6f1d49ba3af3",
+        "name": "INICIAR",
+        "group": "435156eae1fe1a22",
+        "order": 5,
+        "width": 4,
+        "height": 1,
+        "label": "▶ INICIAR",
+        "tooltip": "",
+        "color": "#ffffff",
+        "bgcolor": "#2196F3",
+        "className": "",
+        "icon": "",
+        "payload": "iniciar 70 60",
+        "payloadType": "str",
+        "topic": "",
+        "x": 170,
+        "y": 500,
+        "wires": [
+            [
+                "a5d119693cc21e31"
+            ]
+        ]
+    },
+    {
+        "id": "3474a75a687b26af",
+        "type": "ui_button",
+        "z": "a38a6f1d49ba3af3",
+        "name": "DETENER",
+        "group": "435156eae1fe1a22",
+        "order": 6,
+        "width": 4,
+        "height": 1,
+        "label": "■ DETENER",
+        "tooltip": "",
+        "color": "#ffffff",
+        "bgcolor": "#F44336",
+        "className": "",
+        "icon": "",
+        "payload": "detener",
+        "payloadType": "str",
+        "topic": "",
+        "x": 380,
+        "y": 500,
+        "wires": [
+            [
+                "a5d119693cc21e31"
+            ]
+        ]
+    },
+    {
+        "id": "a5d119693cc21e31",
+        "type": "mqtt out",
+        "z": "a38a6f1d49ba3af3",
+        "name": "Control agitador",
+        "topic": "agitador/control",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "893e725fe440655a",
+        "x": 640,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "893e725fe440655a",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "435156eae1fe1a22",
+        "type": "ui_group",
+        "name": "Motor Agitador",
+        "tab": "3e798ae9bba470cc",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "1fc3c77d74f3a787",
+        "type": "ui_group",
+        "name": "Motor Elevador",
+        "tab": "3e798ae9bba470cc",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "3e798ae9bba470cc",
+        "type": "ui_tab",
+        "name": "Mezclador",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "f94a3529234e3e03",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6",
+            "node-red-contrib-ui-led": "0.4.11",
+            "node-red-contrib-ui-level": "0.1.46"
+        }
+    }
+]
